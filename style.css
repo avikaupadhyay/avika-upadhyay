@@ -1,0 +1,185 @@
+/* Colour variables and the spacing scale (8 / 24 / 48 px) */
+:root {
+  --bg: #FFF1B8;
+  --card: #BFE6E3;
+  --text: #14274E;
+  --text-2: #3A4A6E;
+  --accent: #B3122B;
+  --accent-dark: #8A0D20;
+  --paper: #FFFFFF;
+  --s1: 8px;
+  --s2: 24px;
+  --s3: 48px;
+  --edge: 24px;
+}
+
+/* Page base: body and element selectors */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Josefin Sans", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+h1, h2, h3 {
+  font-family: "Yeseva One", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+h2 { font-size: 2rem; margin-bottom: var(--s2); }
+h3 { font-size: 1.25rem; }
+p { margin: 0 0 var(--s1); max-width: 65ch; }
+ul { margin: 0; padding: 0; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
+:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+/* Navigation bar (flexbox) */
+#nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s1) var(--edge);
+  background: var(--bg);
+  border-bottom: 1px solid var(--text);
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.nav-link:hover { text-decoration: underline; }
+#nav .button { margin-left: auto; }
+
+/* Buttons: the accent colour is used only here and on links */
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--s2);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.button:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+.button-outline { background: transparent; color: var(--accent); }
+.buttons { display: flex; flex-wrap: wrap; gap: var(--s1); margin-top: var(--s2); }
+
+/* Page layout: centred column and section spacing */
+main { max-width: 1000px; margin: 0 auto; padding: 0 var(--edge); }
+section { padding-top: var(--s3); scroll-margin-top: 60px; }
+section:last-child { padding-bottom: var(--s3); }
+
+/* Hero: headshot beside name, line and buttons */
+#hero {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) 1fr;
+  gap: var(--s3);
+  align-items: center;
+}
+#hero img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%; width: 100%; }
+.lead { font-family: "Yeseva One", Georgia, serif; font-size: 1.5rem; line-height: 1.4; margin-top: var(--s2); }
+.sub { color: var(--text-2); }
+
+/* Photos: scrapbook tilt, thin outline, shared warm colour grade, no shadows */
+.photo {
+  outline: 1px solid var(--text);
+  filter: sepia(0.15) saturate(1.1) contrast(1.03);
+  transform: rotate(-1.5deg);
+}
+.card:nth-child(even) .photo { transform: rotate(1.5deg); }
+.small { max-width: 260px; }
+.tall { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; max-width: 300px; }
+.more img, .card > img { margin: var(--s2) var(--s1) var(--s1); }
+
+/* Cards (grid): experience and leadership entries */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s2);
+  align-items: start;
+}
+.card { background: var(--card); padding: var(--s2); border-radius: 8px; }
+.card h3 { margin-bottom: var(--s1); }
+.meta { display: block; margin-bottom: var(--s1); color: var(--text-2); }
+.line { display: block; }
+.more { margin-top: var(--s2); }
+
+/* Expanding cards: plain HTML details, label shows what a click does */
+.card summary { cursor: pointer; list-style: none; }
+.card summary::-webkit-details-marker { display: none; }
+details.card summary::after {
+  content: "Show more";
+  display: block;
+  margin-top: var(--s1);
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+}
+details[open].card summary::after { content: "Show less"; }
+details.card summary:hover::after { color: var(--accent-dark); }
+
+/* Education, clubs and skills: plain lists, grouped by spacing */
+.plain { list-style: none; }
+.plain li { margin-bottom: var(--s2); }
+.plain strong { display: block; font-family: "Yeseva One", Georgia, serif; font-weight: 400; font-size: 1.25rem; }
+.plain span { display: block; color: var(--text-2); }
+.tight li { margin-bottom: var(--s1); }
+.two-col { columns: 2; column-gap: var(--s3); max-width: 700px; }
+
+/* Resume: a white sheet like a paper page */
+.download { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: var(--s2); font-weight: 700; }
+#resume {
+  max-width: 794px;
+  padding: var(--s3);
+  background: var(--paper);
+  outline: 1px solid var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+}
+#resume .r-name { font-family: "Yeseva One", Georgia, serif; font-size: 2rem; line-height: 1.2; margin: 0 0 var(--s1); }
+#resume p { max-width: none; }
+#resume h3 { font-size: 1.1rem; margin: var(--s2) 0 var(--s1); padding-bottom: 4px; border-bottom: 1px solid var(--text); }
+#resume h4 { margin: var(--s1) 0 4px; font-size: 1rem; }
+#resume ul { padding-left: 20px; }
+#resume li { margin-bottom: 4px; }
+#resume .r-skills { columns: 3; }
+
+/* Print: only the resume, black on white, one A4 page */
+@page { size: A4; margin: 12mm; }
+@media print {
+  header, main > section:not(#resume-area), #resume-area h2, .download { display: none; }
+  body { background: #fff; }
+  main, #resume-area { max-width: none; padding: 0; }
+  #resume { max-width: none; padding: 0; outline: none; background: #fff; font-size: 10pt; line-height: 1.35; }
+  #resume, #resume a, #resume .r-name, #resume h3, #resume h4 { color: #000; text-decoration: none; }
+  #resume h3 { margin-top: 10px; border-color: #000; }
+}
+
+/* Small screens: single column, scrolling nav with Email first */
+@media (max-width: 699px) {
+  :root { --edge: 16px; }
+  body { font-size: 17px; }
+  #nav { gap: var(--s1); overflow-x: auto; }
+  .nav-link { white-space: nowrap; }
+  #nav .button { order: -1; margin-left: 0; }
+  #hero { grid-template-columns: 1fr; gap: var(--s2); }
+  #hero img { max-width: 260px; }
+  .two-col { columns: 1; }
+  #resume { padding: var(--s2); }
+  #resume .r-skills { columns: 1; }
+}
