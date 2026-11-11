@@ -95,11 +95,12 @@ section:last-child { padding-bottom: var(--s3); }
 .lead { font-family: "Yeseva One", Georgia, serif; font-size: 1.5rem; line-height: 1.4; margin-top: var(--s2); }
 .sub { color: var(--text-2); }
 
-/* Photos: scrapbook tilt, thin outline, shared warm colour grade, no shadows */
+/* Photos: scrapbook tilt, thin outline, shared warm colour grade, soft shadows */
 .photo {
   outline: 1px solid var(--text);
   filter: sepia(0.15) saturate(1.1) contrast(1.03);
   transform: rotate(-1.5deg);
+box-shadow: 4px 6px 12px rgba(20, 39, 78, 0.25);
 }
 .card:nth-child(even) .photo { transform: rotate(1.5deg); }
 .small { max-width: 260px; }
